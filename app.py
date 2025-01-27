@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, url_for, request
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from models import db, User
 from flask_bcrypt import Bcrypt
+from utils import spazio, gatto
 
 app = Flask(__name__)
 app.secret_key = 'key_sessione_user' #chiave per la sessione user
@@ -59,7 +60,12 @@ def login():
 @app.route('/home')
 @login_required #solo se user è autenticato
 def home():
-    return render_template('home.html', username=current_user.username)
+    return render_template('home.html', username=current_user.username, spazio = spazio())
+
+@app.route('/gatti')
+@login_required #solo se user è autenticato
+def gatti():
+    return render_template('gatti.html', username=current_user.username, gatto = gatto())
 
 @app.route('/logout')
 @login_required

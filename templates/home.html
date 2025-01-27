@@ -3,6 +3,13 @@
     <title>Test login</title>
 </head>
 <body>
-    <marquee>{{ username }}</marquee>
+    <h2>{{ username }}</h2>
+    <button><a href="{{ url_for('gatti')}}">FATTI SUI GATTI</a></button>
+    <h1>Ci sono {{ spazio.number }} persone nello spazio</h1>
+    <br><br>
+    {% for i in spazio.people %}
+        <h1>{{ i['name'] }}</h1>
+        <h2>{{ i['craft'] }}</h2>
+    {% endfor %}
     <a href="{{ url_for('logout') }}">esci</a>
 </body>
